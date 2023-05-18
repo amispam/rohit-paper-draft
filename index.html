@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .decorator{
+    padding:1vw;
+    border-style:dashed;
+    border-width:1px;
+    margin-bottom:5px;
+}
+h1{
+            font-family: 'Fredoka One', cursive;
+        }
+        div{
+            font-family:sans-serif;
+            font-weight:bold;
+        }
+body{
+    margin:0px;
+}
+.logo{
+    max-width:90px;
+    height:90px;
+    left:0px;
+    position:absolute;
+}
+.head-container{
+    margin:20px 0px 0px 20px;
+}
+.head-content{
+    text-align:center;
+}
+.hr1{
+    border-style:dashed none none none;
+    border-width:3px;
+    border-color:black;
+}
+.keypad{
+            margin:2px;
+            padding:1vw;
+            border:none;
+            background-color:orange;
+            height:50px;
+            width:50px;
+            border-radius:50%;
+            font-weight:bold;
+        }
+        .keypad:hover{
+            background-color: steelblue;
+            box-shadow: 1px 1px 1px black;
+            color:white;
+        }
+        .keypad1{
+            margin:2px;
+            padding:1vw;
+            border:none;
+            background-color:orange;
+            width:80px;
+        }
+        .keypad1:hover{
+            background-color: steelblue;
+            box-shadow: 1px 1px 1px black;
+            
+        }
+        div{
+            font-weight: normal;
+        }
+        .cpanel{
+            margin:2px;
+            padding:1vw;
+            background-color: blueviolet;
+            color:white;
+            border:none;
+            padding:8px;
+            border-radius: 5px;
+        }
+        .cpanel1{
+            margin:2px;
+            padding:1vw;
+            background-color:springgreen;
+            border:none;
+            padding:8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body id="bdy">
+    <div id="controlPanel" style="background-image:linear-gradient(to right, brown, lightgreen); padding:2vw;">
+        <h3 style="background-image:linear-gradient(to right, lightgreen, brown); padding:1vw;">Control Panel</h3>
+        <select name="secSelector" id="secSelector" style="display:none;">
+            <option value="A">Section A</option>
+            <option value="B">Section B</option>
+            <option value="C">Section C</option>
+            <option value="D">Section D</option>
+        </select>
+        <select name="mhtpnl" id="selectMathPanel" class="cpanel1">
+            <option value="0">math panel off</option>
+            <option value="1">math panel on</option>
+        </select>
+        <select name="qType" id="qType" class="cpanel1">
+            <option value="optional">optional</option>
+            <option value="fill_in_the_blank">fill in the blanks</option>
+            <option value="true_false">true false</option>
+            <option value="qus_answer">question answer</option>
+        </select>
+        <input type="number" id="qnum" placeholder="number of questions" class="cpanel1" />
+        <button id="addQus" class="cpanel">Add questions</button> <button id="subm" class="cpanel">print</button>
+    </div>
+    
+
+    <div id="preview" contenteditable="true">
+        <div class="head-container">
+            <img src="./logo2.png" class="logo" alt="logo">
+            <h1 class="head-content">Your Institute full name</h1>
+            <h3 class="head-content" style="font-weight:normal;">Your Subject, Your Class</h3>
+        </div>
+        <hr class="hr1">
+        <div style="margin:0px 20px;">
+            <p style="position:relative;">Maximum Score: <span style="position:absolute; right:0px;">Time Duration</span></p>
+        </div>
+        <hr class="hr1">
+        <div class="decorator" id="Asection">
+            <h3 style="background:powderblue; padding:1vw;">UNIT TEST</h3>
+
+            <div id="Aoptional">
+                <div style="margin-top:10px; margin:0px 20px;">
+                    <p style="position:relative;">Question #: Choose the correct option.<span style="position:absolute; right:0px;">[marks]</span></p>
+                </div>
+                <div style="margin-top:10px; margin:0px 20px 0px 40px;">
+                    <div id="AoptionalContent"></div>
+                </div>
+            </div>
+
+            <div id="Afitb">
+                <div style="margin-top:10px; margin:0px 20px;">
+                    <p style="position:relative;">Question #: Fill in the blanks.<span style="position:absolute; right:0px;">[marks]</span></p>
+                </div>
+                <div style="margin-top:10px; margin:0px 20px 0px 40px;">
+                    <ol type="i" id="AfitbContent"></ol>
+                </div>
+            </div>
+
+            <div id="Atf">
+                <div style="margin-top:10px; margin:0px 20px;">
+                    <p style="position:relative;">Question #: True/False.<span style="position:absolute; right:0px;">[marks]</span></p>
+                </div>
+                <div style="margin-top:10px; margin:0px 20px 0px 40px;">
+                    <ol type="i" id="AtfContent"></ol>
+                </div>
+            </div>
+
+            <div id="AqusAndAns">
+                <div style="margin-top:10px; margin:0px 20px;">
+                    <p style="position:relative;">Question #: Answer the following questions.<span style="position:absolute; right:0px;">[marks]</span></p>
+                </div>
+                <div style="margin-top:10px; margin:0px 20px 0px 40px;">
+                    <ol type="i" id="AqusAndAnsContent"></ol>
+                </div>
+            </div>
+    
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- MATH PANEL CODE BEGIN -->
+
+
+    <div id="mathPanel" style="position:fixed; bottom:20px; right:20px; background-color:rgba(180,240,20,0.7); padding:1vw; border-radius:5px; display:none;">
+        <div id="display" style="min-width:350px; padding:1vw; min-height:20px; border:none; background:black; color:white; overflow:hidden; display:inline-block;">Display panel
+        </div><br />
+        
+        <input type="text" style="width:350px; padding:4px; height:20px;" placeholder="Advanced LaTex input panel..." id="inp" /><br /><br />
+        <div id="keypad" style="text-align:center;">
+            <button class="keypad" onclick="showVal(this)" value="x ">x</button><button class="keypad" onclick="showVal(this)" value="y ">y</button><button class="keypad" onclick="showVal(this)" value="z ">z</button>
+            <button class="keypad" onclick="showVal(this)" value="\alpha ">\(\alpha\)</button>
+            <button class="keypad" onclick="showVal(this)" value="\beta ">\(\beta\)</button><button class="keypad" onclick="showVal(this)" value="\gamma ">\(\gamma\)</button><br />
+            <button class="keypad" onclick="showVal(this)" value="= ">\(=\)</button>
+            <button class="keypad" onclick="showVal(this)" value="^">^</button>
+            <button class="keypad" onclick="showVal(this)" value="+ ">+</button>
+            <button class="keypad" onclick="showVal(this)" value="- ">-</button>
+            <button class="keypad" onclick="showVal(this)" value="\times ">\(\times\)</button>
+            <button class="keypad" onclick="showVal(this)" value="/ ">/</button><br />
+            <button class="keypad" onclick="clearit()" style="background-color:red;">CLR</button>
+            <button class="keypad" onclick="showVal(this)" value="1">1</button>
+            <button class="keypad" onclick="showVal(this)" value="2">2</button>
+            <button class="keypad" onclick="showVal(this)" value="3">3</button>
+            <button class="keypad" onclick="showVal(this)" value="4">4</button>
+            <button class="keypad" onclick="showVal(this)" value="5">5</button><br />
+            <button class="keypad" onclick="showVal(this)" value="6">6</button>
+            <button class="keypad" onclick="showVal(this)" value="7">7</button>
+            <button class="keypad" onclick="showVal(this)" value="8">8</button>
+            <button class="keypad" onclick="showVal(this)" value="9">9</button>
+            <button class="keypad" onclick="showVal(this)" value="0">0</button>
+            <button class="keypad" onclick="showVal(this)" value=".">.</button><br />
+            <button class="keypad" onclick="showValOne()" value="{}">{...}</button>
+            <button class="keypad" onclick="showVal(this)" value="( ">(</button>
+            <button class="keypad" onclick="showVal(this)" value=") ">)</button>
+            <button class="keypad" onclick="showVal(this)" value="\{ ">{</button>
+            <button class="keypad" onclick="showVal(this)" value="\} ">}</button>
+            <button class="keypad" onclick="showValTwo()" value="frac">frac</button><br />
+            <button class="keypad" onclick="showVal(this)" value="\over">over</button>
+            <button class="keypad" onclick="showVal(this)" value="[ ">[</button>
+            <button class="keypad" onclick="showVal(this)" value="] ">]</button>
+            <button class="keypad" onclick="showVal(this)" value="\ne ">\(\ne\)</button>
+            <button class="keypad" onclick="showVal(this)" value="\div ">\(\div\)</button><br />
+            <button class="keypad1" onclick="showVal(this)" value="^\circ ">degree</button>
+            <button class="keypad1" onclick="showVal(this)" value="\angle ">angle</button>
+            <button class="keypad1" onclick="submitit()" style="background-color:rgb(13, 134, 134); color:white; font-weight:bold;">copy</button>
+            <button class="keypad1" onclick="rndrit()" style="background-color:rgb(13, 134, 134); color:white; font-weight:bold;">render</button>
+
+        </div>
+    </div>
+
+
+    <!-- MATH PANEL CODE END -->
+    
+
+    <script>
+        var secSelector = document.getElementById("secSelector");
+        var qType = document.getElementById("qType");
+        var qnum = document.getElementById("qnum");
+        var addQus = document.getElementById("addQus");
+
+        var Asection = document.getElementById("Asection");
+        var Aoptional = document.getElementById("Aoptional");
+        var AoptionalContent = document.getElementById("AoptionalContent");
+        var  Afitb = document.getElementById("Afitb");
+        var AfitbContent = document.getElementById("AfitbContent");
+        var Atf = document.getElementById("Atf");
+        var AtfContent = document.getElementById("AtfContent");
+        var AqusAndAns = document.getElementById("AqusAndAns");
+        var AqusAndAnsContent = document.getElementById("AqusAndAnsContent");
+        
+        var selectMathPanel = document.getElementById("selectMathPanel");
+        var mathPanel = document.getElementById("mathPanel");
+
+        Aoptional.style.display = "none";
+        Afitb.style.display = "none";
+        Atf.style.display = "none";
+        AqusAndAns.style.display = "none";
+
+        addQus.addEventListener("click", function(){
+            if(qnum.value >= 1){
+                if(qType.value=="optional"){
+                    var i = 0;
+                    window[secSelector.value+"optional"].style.display="block";
+                    for(i=0; i<qnum.value; i++){
+                        window[secSelector.value+"optionalContent"].innerHTML+="<div><p style=\"margin-bottom:0px;\">i. Question title</p><div style=\"display:inline-block; width:49%;\"><p>(a) Option 1</p><p>(c) Option 2</p></div><div style=\"display:inline-block; width:49%;\"><p>(b) Option 3</p><p>(d) Option 4</p></div></div>";
+                    }
+                }
+
+                else if(qType.value == "qus_answer"){
+                    var i = 0;
+                    window[secSelector.value+"qusAndAns"].style.display="block";
+                    for(i=0; i<qnum.value; i++){
+                        window[secSelector.value+"qusAndAnsContent"].innerHTML+="<li><p>Your question goes here...</p></li>";
+                    }
+                }
+
+                else if(qType.value == "true_false"){
+                    var i = 0;
+                    window[secSelector.value+"tf"].style.display="block";
+                    for(i=0; i<qnum.value; i++){
+                        window[secSelector.value+"tfContent"].innerHTML+="<li><p>Your question goes here... <span style=\"margin-right:100px; float:right;\"><svg viewBox=\"0 0 100 100\" style=\"width:15px;\"><rect x=\"0\" y=\"0\" width=\"100\" height=\"100\" stroke=\"black\" stroke-width=\"10\" fill=\"none\" /></svg></span></p></li>";
+                    }
+                }
+
+                else if(qType.value == "fill_in_the_blank"){
+                    var i = 0;
+                    window[secSelector.value+"fitb"].style.display="block";
+                    for(i=0; i<qnum.value; i++){
+                        window[secSelector.value+"fitbContent"].innerHTML+="<li><p>Your question goes here ________</p></li>";
+                    }
+                }
+
+
+            }
+
+
+        });
+
+        document.getElementById("subm").onclick = function(){
+            document.getElementById("controlPanel").style.display = "none";
+            document.getElementById("subm").style.display = "none";
+            mathPanel.style.display="none";
+            window.print();
+        }
+
+        selectMathPanel.addEventListener("change", function(){
+            if(selectMathPanel.value == "0"){
+                mathPanel.style.display = "none";
+            }
+            else{
+                mathPanel.style.display = "block";
+            }
+        });
+
+
+        /* MATH PANEL JAVASCRIPT BEGIN */
+
+        var mathPanel = document.getElementById("mathPanel");
+        var display = document.getElementById("display");
+        var inp = document.getElementById("inp");
+        inp.addEventListener("input", function(){
+            display.innerHTML = "\\("+inp.value+"\\)";
+            MathJax.typeset([display]);
+        }); 
+        function showVal(obj){
+            inp.value += obj.value;
+            display.innerHTML = "\\("+inp.value+"\\)";
+            MathJax.typeset([display]);
+        }
+        function showValOne(){
+            var k = prompt("please enter value inside the bracket");
+            inp.value += "{"+k+"}";
+            display.innerHTML = "\\("+inp.value+"\\)";
+            MathJax.typeset([display]);
+        }
+        function showValTwo(){
+            var kj = prompt("please enter numerator and denominator for example: 12/125");
+            console.log(kj.split("/"));
+            var numerator = kj.split("/")[0];
+            var denominator = kj.split("/")[1];
+            inp.value += "\\frac{"+numerator+"}{"+denominator+"} "; 
+            display.innerHTML = "\\("+inp.value+"\\)";
+            MathJax.typeset([display]);
+        }
+        bdy = document.getElementById('bdy');
+        var adder = document.getElementById("adder");
+        adder.style.border = "1px solid black";
+        adder.style.padding = "1vw";
+        function submitit(){
+            navigator.clipboard.writeText(" \\("+String(inp.value)+"\\) ");
+            alert("code copied as "+(" \\("+String(inp.value)+"\\) "));
+        }
+        function rndrit(){
+            MathJax.typeset([bdy]);
+        }
+        function clearit(){
+            inp.value = "";
+            display.innerHTML = "";
+        }
+
+        /* MATH PANEL JAVASCRIPT END */
+
+
+    </script>
+
+    <!--
+        <div class="decorator">
+        <div style="margin-top:10px; margin:0px 20px;">
+            <p style="position:relative;">Question #: <span style="position:absolute; right:0px;">[2]</span></p>
+        </div>
+        <div style="margin-top:10px; margin:0px 20px 0px 40px;">
+        <p>Question goes here...</p>
+        </div>
+    </div>
+
+    <div>
+                <p style="margin-bottom:0px;">i. Question title</p>
+                <div style="display:inline-block; width:49%;">
+                    <p>(a) Option 1</p>
+                    <p>(c) Option 2</p>
+                </div>
+                <div style="display:inline-block; width:49%;">
+                    <p>(b) Option 3</p>
+                    <p>(d) Option 4</p>
+                </div>
+            </div>
+    -->
+</body>
+</html>
