@@ -338,11 +338,12 @@ body{
             MathJax.typeset([display]);
         }
         bdy = document.getElementById('bdy');
-        var adder = document.getElementById("adder");
-        adder.style.border = "1px solid black";
-        adder.style.padding = "1vw";
+
         function submitit(){
-            navigator.clipboard.writeText(" \\("+String(inp.value)+"\\) ");
+            var txt = " \\("+String(inp.value)+"\\) ";
+            txt.select();
+            txt.setSelectionRange(0,9999);
+            navigator.clipboard.writeText(txt);
             alert("code copied as "+(" \\("+String(inp.value)+"\\) "));
         }
         function rndrit(){
