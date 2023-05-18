@@ -341,8 +341,6 @@ body{
 
         function submitit(){
             var txt = " \\("+String(inp.value)+"\\) ";
-            txt.select();
-            txt.setSelectionRange(0,9999);
             navigator.clipboard.writeText(txt);
             alert("code copied as "+(" \\("+String(inp.value)+"\\) "));
         }
