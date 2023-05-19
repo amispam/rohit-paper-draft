@@ -338,9 +338,6 @@ body{
             MathJax.typeset([display]);
         }
         bdy = document.getElementById('bdy');
-        var adder = document.getElementById("adder");
-        adder.style.border = "1px solid black";
-        adder.style.padding = "1vw";
         function submitit(){
             navigator.clipboard.writeText(" \\("+String(inp.value)+"\\) ");
             alert("code copied as "+(" \\("+String(inp.value)+"\\) "));
