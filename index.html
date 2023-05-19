@@ -225,6 +225,18 @@ body{
 
 
     <!-- MATH PANEL CODE END -->
+
+
+    <!-- copy code display code begin -->
+
+    <div style="position:absolute; top:0px; left:0px; height:100%; width:100%; background-color: rgba(0,0,0,0.3); display:none;" id="copycode">
+        <h1 style="text-align:center; color:white;">Copy LaTex Code</h1>
+        <div style="height:100px; width:250px; background-color:black; position: fixed; top:50%; left:50%; transform: translate(-50%,-50%);">
+            <input type="text" style="position:relative; top:50%; left:50%; transform:translate(-50%, -50%);" id="copycodeDisplay" />
+        </div>
+       </div>
+
+       <!-- copy code display code end -->
     
 
     <script>
@@ -245,6 +257,9 @@ body{
         
         var selectMathPanel = document.getElementById("selectMathPanel");
         var mathPanel = document.getElementById("mathPanel");
+
+        var copycode = document.getElementById("copycode");
+        var copycodeDisplay = document.getElementById("copycodeDisplay");
 
         Aoptional.style.display = "none";
         Afitb.style.display = "none";
@@ -339,8 +354,13 @@ body{
         }
         bdy = document.getElementById('bdy');
         function submitit(){
-            navigator.clipboard.writeText(" \\("+String(inp.value)+"\\) ");
-            alert("code copied as "+(" \\("+String(inp.value)+"\\) "));
+
+            copycode.style.display = "block";
+            copycodeDisplay.value = " \\("+String(inp.value)+"\\) ";
+            copycodeDisplay.select();
+            copycodeDisplay.setSelectionRange(0,99999);
+            navigator.clipboard.writeText(copycodeDisplay.value); 
+            setTimeout(()=> {copycode.style.display="none";}, 2000); 
         }
         function rndrit(){
             MathJax.typeset([bdy]);
