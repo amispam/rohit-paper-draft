@@ -13,6 +13,10 @@
             padding:5px;
             position:relative;
             font-family: 'Russo One', sans-serif;
+            font-size:1.1rem;
+        }
+        .mainblock{
+            font-size:1.2rem;
         }
         .logo{
             width:100px;
@@ -69,13 +73,13 @@
 </head>
 <body id="bdy">
     <button id="print" style="display:none;" onclick="doPrint()">print</button>
-    <div id="ctrlPanel">
-        <h1 style="text-align:center;">This is control panel</h1>
-        <select name="mpanel" id="mpanel">
+    <div id="ctrlPanel" style="background-image:linear-gradient(to right, red,blue); padding:20px; color:white;">
+        <h1 style="text-align:center;">control panel</h1>
+        <select name="mpanel" id="mpanel" style="border:none; height:30px; border-radius:5px; font-size:1.2rem; font-weight:bold; background-color:lawngreen;">
             <option value="off">math panel off</option>
             <option value="on">math panel on</option>
         </select>
-        <select name="qtype" id="qtype">
+        <select name="qtype" id="qtype" style="border:none; height:30px; border-radius:5px; font-size:1.2rem; font-weight:bold; background-color:lawngreen;">
             <option value="opt">optional</option>
             <option value="fib">fill in the blanks</option>
             <option value="taf">true false</option>
@@ -83,8 +87,8 @@
             <option value="sht">Q/A type</option>
             <option value="pbq">picture based question</option>
         </select>
-        <button id="submit">add segment</button>
-        <button id="preview">preview</button>
+        <button id="submit" style="border:none; height:30px;font-size:1.2rem; font-weight:bold; background:springgreen; border-radius:5px;">add segment</button>
+        <button id="preview" style="border:none; height:30px;font-size:1.2rem; font-weight:bold; background:springgreen; border-radius:5px;">preview</button>
         
 
 
@@ -238,19 +242,19 @@
 
         submit.addEventListener("click", function(){
             if(qtype.value=="sht"){
-                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Answer the follwoing questions.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addQus(this)">add question</button><li style="margin-bottom:10px;"><span class="edit" contenteditable="true">Your question goes here...</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button></li></ol></div></div>';
+                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Answer the follwoing questions.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addQus(this)">add question</button><li style="margin-bottom:10px;"><span class="edit" contenteditable="true">Your question goes here...</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button></li></ol></div></div>';
             }
             else if(qtype.value == "fib"){
-                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Fill in the blanks.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addFib(this)">add question</button><li style="margin-bottom:10px;"><span class="edit" contenteditable="true">Fill in the __________ blanks question.</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button></li></ol></div></div>';
+                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Fill in the blanks.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addFib(this)">add question</button><li style="margin-bottom:10px;"><span class="edit" contenteditable="true">Fill in the __________ blanks question.</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button></li></ol></div></div>';
             }
             else if(qtype.value == "taf"){
-                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: True / False.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addTaf(this)">add question</button><li style="margin-bottom:10px;"><span class="edit" contenteditable="true">Your question goes here...</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button><span style="float:right;"><svg width="18" height="18" style="margin-right:10px; width:18px; height:18px;"><rect width="18" height="18" fill="white" stroke="black" stroke-width="2" /></svg></span></li></ol></div></div>';
+                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: True / False.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addTaf(this)">add question</button><li style="margin-bottom:10px;"><span class="edit" contenteditable="true">Your question goes here...</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button><span style="float:right;"><svg width="18" height="18" style="margin-right:10px; width:18px; height:18px;"><rect width="18" height="18" fill="white" stroke="black" stroke-width="2" /></svg></span></li></ol></div></div>';
             }
             else if(qtype.value=="mtf"){
-                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Match the following.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addMtf(this)">add question</button><li style="margin-bottom:10px;"><div style="position:relative; width:70vw;"><div style="position:absolute;"><span class="edit" contenteditable="true">Column 1</span></div><div style="position:absolute; right:5px;"><span class="edit" contenteditable="true">Column 2</span></div></div>  <button style="background:lightblue; border:1px solid black; float:right;" onclick="rmv(this)">❌</button></li></ol></div></div>';
+                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Match the following.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addMtf(this)">add question</button><li style="margin-bottom:10px;"><div style="position:relative; width:70vw;"><div style="position:absolute;"><span class="edit" contenteditable="true">Column 1</span></div><div style="position:absolute; right:5px;"><span class="edit" contenteditable="true">Column 2</span></div></div>  <button style="background:lightblue; border:1px solid black; float:right;" onclick="rmv(this)">❌</button></li></ol></div></div>';
             }
             else if(qtype.value == "opt"){
-                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Choose the correct option.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addOpt(this)">add question</button><li style="margin-bottom:10px;"><span contenteditable="true" class="edit">Your optional question title...</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button><table style="width:90vw;"><tr><td>i. <span contenteditable="true" class="edit">option 1</span></td><td>iii. <span contenteditable="true" class="edit">option 3</span></td></tr><tr><td>ii. <span contenteditable="true" class="edit">option 2</span></td><td>iv. <span contenteditable="true" class="edit">option 4</span></td></tr></table></li></ol></div></div>';
+                mainblock.innerHTML += '<div style="padding:10px; border:1px solid black;"><button onclick="rmv(this)">Remove all questions</button><br /><div style="font-weight:bold;"><span contenteditable="true" class="edit">Question #: Choose the correct option.</span><span style="float:right">[<span class="edit" contenteditable="true">marks</span>]</span></div><div><ol type="A"><button onclick="addOpt(this)">add question</button><li style="margin-bottom:10px;"><span contenteditable="true" class="edit">Your optional question title...</span> <button style="background:lightblue; border:1px solid black;" onclick="rmv(this)">❌</button><table style="width:90vw;"><tr><td>i. <span contenteditable="true" class="edit">option 1</span></td><td>iii. <span contenteditable="true" class="edit">option 3</span></td></tr><tr><td>ii. <span contenteditable="true" class="edit">option 2</span></td><td>iv. <span contenteditable="true" class="edit">option 4</span></td></tr></table></li></ol></div></div>';
             }
         });
 
