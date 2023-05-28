@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -308,58 +309,77 @@
         el.parentElement.style.display = "none";
     }
 
+    var cPos = latexInp.selectionStart;
+    var tLen = latexInp.value.length;
     function showVal(obj){
-            latexInp.value += obj.value;
-            disp.innerHTML = "\\("+latexInp.value+"\\)";
-            MathJax.typeset([disp]);
+        cPos = parseInt(latexInp.selectionStart);
+        tLen = parseInt(latexInp.value.length);
+        var txt1 = latexInp.value.slice(0, cPos);
+        var txt2 = latexInp.value.slice(cPos, tLen);
+        latexInp.value = txt1+obj.value+txt2;
+        disp.innerHTML = "\\("+latexInp.value+"\\)";
+        MathJax.typeset([disp]);
+        latexInp.focus();
         }
 
     function doRoot(){
-        var itsval = prompt("Please enter value inside root");
-        if(itsval != null){
-        latexInp.value += "\\sqrt{"+itsval+"} ";
+        cPos = parseInt(latexInp.selectionStart);
+        tLen = parseInt(latexInp.value.length);
+        var txt1 = latexInp.value.slice(0, cPos);
+        var txt2 = latexInp.value.slice(cPos, tLen);
+        latexInp.value = txt1+"\\sqrt{ } "+txt2;
         disp.innerHTML = "\\("+latexInp.value+"\\)";
         MathJax.typeset([disp]);
-        }
+        latexInp.select();
+        latexInp.setSelectionRange(cPos+6, cPos+7);
     }
 
     function doSub(){
-        var itsval = prompt("Please enter value inside root");
-        if(itsval != null){
-        latexInp.value += "_{"+itsval+"} ";
+        cPos = parseInt(latexInp.selectionStart);
+        tLen = parseInt(latexInp.value.length);
+        var txt1 = latexInp.value.slice(0, cPos);
+        var txt2 = latexInp.value.slice(cPos, tLen);
+        latexInp.value = txt1+"_{ } "+txt2;
         disp.innerHTML = "\\("+latexInp.value+"\\)";
         MathJax.typeset([disp]);
-        }
+        latexInp.select();
+        latexInp.setSelectionRange(cPos+2, cPos+3);
     }
 
     function doPow(){
-        var itsval = prompt("Please enter value inside root");
-        if(itsval != null){
-        latexInp.value += "^{"+itsval+"} ";
+        cPos = parseInt(latexInp.selectionStart);
+        tLen = parseInt(latexInp.value.length);
+        var txt1 = latexInp.value.slice(0, cPos);
+        var txt2 = latexInp.value.slice(cPos, tLen);
+        latexInp.value = txt1+"^{ } "+txt2;
         disp.innerHTML = "\\("+latexInp.value+"\\)";
         MathJax.typeset([disp]);
-        }
+        latexInp.select();
+        latexInp.setSelectionRange(cPos+2, cPos+3);
     }
 
     function doFrac(){
-        var itsval = prompt("Please enter value inside root");
-        if(itsval != null){
-            var splitted = itsval.split("/");
-            var numerator = splitted[0]
-            var denominator = splitted[1];
-            latexInp.value += "\\frac{"+numerator+"}{"+denominator+"} ";
-            disp.innerHTML = "\\("+latexInp.value+"\\)";
-            MathJax.typeset([disp]);
-        }
+        cPos = parseInt(latexInp.selectionStart);
+        tLen = parseInt(latexInp.value.length);
+        var txt1 = latexInp.value.slice(0, cPos);
+        var txt2 = latexInp.value.slice(cPos, tLen);
+        latexInp.value = txt1+"\\frac{?}{?} "+txt2;
+        disp.innerHTML = "\\("+latexInp.value+"\\)";
+        MathJax.typeset([disp]);
+        latexInp.select();
+        latexInp.setSelectionRange(cPos+6, cPos+7);
     }
 
     function doEnclose(){
-        var itsval = prompt("Please enter value inside root");
-        if(itsval != null){
-        latexInp.value += "\{"+itsval+"\} ";
+        cPos = parseInt(latexInp.selectionStart);
+        tLen = parseInt(latexInp.value.length);
+        var txt1 = latexInp.value.slice(0, cPos);
+        var txt2 = latexInp.value.slice(cPos, tLen);
+        latexInp.value = txt1+"\{ \} "+txt2;
         disp.innerHTML = "\\("+latexInp.value+"\\)";
         MathJax.typeset([disp]);
-        }
+        latexInp.select();
+        latexInp.setSelectionRange(cPos+1, cPos+2);
     }
 
 
@@ -377,13 +397,12 @@
     });
 
     function cpyIt(){
-
-copycode.style.display = "block";
-copycode.value = " \\("+String(latexInp.value)+"\\) ";
-copycode.select();
-copycode.setSelectionRange(0,99999);
-navigator.clipboard.writeText(copycode.value); 
-setTimeout(()=> {copycode.style.display="none";}, 1000); 
+        copycode.style.display = "block";
+        copycode.value = " \\("+String(latexInp.value)+"\\) ";
+        copycode.select();
+        copycode.setSelectionRange(0,99999);
+        navigator.clipboard.writeText(copycode.value); 
+        setTimeout(()=> {copycode.style.display="none";}, 1000); 
 }
 
 
